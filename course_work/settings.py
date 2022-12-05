@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'battles',
     'creatures',
     'planets',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
