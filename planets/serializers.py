@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from planets.models import Universe, Planet
+from planets.models import Planet
+from planets.models import Universe
 
 
 class ProtectedPlanetSerializer(serializers.ModelSerializer):
@@ -13,7 +14,6 @@ class ProtectedPlanetSerializer(serializers.ModelSerializer):
 
 
 class ProtectedUniverseSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Universe
         fields = [
@@ -23,7 +23,6 @@ class ProtectedUniverseSerializer(serializers.ModelSerializer):
 
 
 class PlanetSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Planet
         fields = [

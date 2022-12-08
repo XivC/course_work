@@ -1,9 +1,14 @@
 from rest_framework.generics import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 
-from affects.models import Weapon, Effect, PlanetEffectRule, CreatureEffectRule
-from affects.serializers import WeaponSerializer, EffectSerializer, PlanetEffectRuleSerializer, \
-    CreatureEffectRuleSerializer
+from affects.models import CreatureEffectRule
+from affects.models import Effect
+from affects.models import PlanetEffectRule
+from affects.models import Weapon
+from affects.serializers import CreatureEffectRuleSerializer
+from affects.serializers import EffectSerializer
+from affects.serializers import PlanetEffectRuleSerializer
+from affects.serializers import WeaponSerializer
 
 
 class WeaponViewSet(ModelViewSet):
