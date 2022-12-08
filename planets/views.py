@@ -1,7 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
-from planets.serializers import UniverseSerializer, PlanetSerializer
-from planets.models import Universe, Planet
+from planets.models import Planet
+from planets.models import Universe
+from planets.serializers import PlanetSerializer
+from planets.serializers import UniverseSerializer
 
 
 class UniverseViewSet(ModelViewSet):
@@ -12,4 +14,3 @@ class UniverseViewSet(ModelViewSet):
 class PlanetViewSet(ModelViewSet):
     queryset = Planet.objects.all()
     serializer_class = PlanetSerializer
-

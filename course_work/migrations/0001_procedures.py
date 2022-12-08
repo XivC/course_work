@@ -1,4 +1,5 @@
-from django.db import migrations, models, connection
+from django.db import connection
+from django.db import migrations
 from django.db.migrations import RunPython
 
 
