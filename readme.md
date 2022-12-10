@@ -1,12 +1,13 @@
 Это репа для бекенда курсача
 
 Установка:
+```bash
+pip install psycopg2-binary
+# Версия питона: 3.8 !!!!!!!! Выше или ниже нельзя
+pip install -r requirements.txts
+python3 manage.py migrate
+```
 
-    Версия питона: 3.8 !!!!!!!! Выше или ниже нельзя
-    
-    pip install -r requirements.txt
-    
-    python3 manage.py migrate
 
 Правила работы:
 

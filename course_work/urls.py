@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/', include('planets.urls')),
     path('api/', include('affects.urls')),
     path('api/', include('adventures.urls')),
+    path('api/', include('creatures.urls')),
     path('admin/', admin.site.urls),
 ]
