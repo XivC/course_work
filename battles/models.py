@@ -34,6 +34,6 @@ class BattleReport(models.Model):
 
 
 class BattlerEffect(models.Model):
-    battle = models.ForeignKey('battles.Battle', related_name='+', on_delete=models.CASCADE)
-    battler = models.ForeignKey('battles.Battler', related_name='effects', on_delete=models.CASCADE)
+    battle = models.ForeignKey('battles.Battle', related_name='applied_effects', on_delete=models.CASCADE)
+    battler = models.ForeignKey('battles.Battler', related_name='+', on_delete=models.CASCADE)
     effect = models.ForeignKey('affects.Effect', related_name='+', on_delete=models.CASCADE)

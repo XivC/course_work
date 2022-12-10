@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from adventures.models import Adventure
+from adventures.models import Adventure, AdventurePlanet
 from adventures.models import Team
 from battles.serializers import BattlerSerializer
 from planets.serializers import PlanetSerializer
@@ -23,9 +23,20 @@ class TeamSerializer(serializers.ModelSerializer):
         ).data
 
 
+class AdventurePlanetSerializer(serializers.ModelSerializer):
+    planet = PlanetSerializer(read_only=True)
+
+    class Meta:
+        model = AdventurePlanet
+        fields = [
+            'planet',
+            'is_visited',
+        ]
+
+
 class AdventureSerializer(serializers.ModelSerializer):
     team = TeamSerializer(read_only=True)
-    planets = serializers.SerializerMethodField()
+    adventure_planets = serializers.ListSerializer(child=AdventurePlanetSerializer(), read_only=True)
 
     class Meta:
         model = Adventure
@@ -36,11 +47,8 @@ class AdventureSerializer(serializers.ModelSerializer):
             'finished_at',
             'is_successful',
             'team',
-            'planets',
+            'adventure_planets',
         ]
-
-    def get_planets(self, instance: Adventure):
-        return PlanetSerializer([ap.planet for ap in instance.adventure_planets.all()], many=True).data
 
 
 class CreatureWithWeaponSerializer(serializers.Serializer):

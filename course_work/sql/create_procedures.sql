@@ -279,7 +279,7 @@ BEGIN
 END;
 
 $$ LANGUAGE plpgsql;
-CREATE OR REPLACE FUNCTION adventure_step(adv_id INTEGER) RETURNS BOOL AS
+CREATE OR REPLACE FUNCTION adventure_step(adv_id INTEGER) RETURNS INTEGER AS
 $$
 DECLARE
     battle_planet_id       INTEGER;
@@ -328,16 +328,13 @@ BEGIN
     SELECT COUNT(*) INTO _count_unvisited FROM adventures_adventureplanet WHERE is_visited = False;
 
     IF (_allies_power < _opponents_power) THEN
-        UPDATE adventures_adventure SET finished_at=current_timestamp, is_successful= false WHERE id = adv_id;
-        RETURN TRUE;
     END IF;
 
     IF (_count_unvisited = 0) THEN
         UPDATE adventures_adventure SET finished_at=current_timestamp, is_successful= True WHERE id = adv_id;
-        RETURN TRUE;
     END IF;
 
-    RETURN FALSE;
+    RETURN _battle_id;
 
 
 END;

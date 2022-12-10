@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 from adventures.models import Adventure
 from affects.models import Weapon
+from battles.models import Battle
 from course_work.storage import FunctionCaller
 from creatures.models import Creature
 from planets.models import Planet
@@ -38,3 +39,17 @@ class AdventureStarter:
             ]
         )()[0]
         return Adventure.objects.get(id=adventure_id)
+
+
+@dataclass
+class AdventureStepper:
+    adventure: Adventure
+
+    def __call__(self):
+        battle_id = FunctionCaller(
+            function='adventure_step',
+            args=[
+                self.adventure.id,
+            ]
+        )()[0]
+        return Battle.objects.get(id=battle_id)
