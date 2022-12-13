@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from django.core.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError
 
 from adventures.models import Adventure
 from affects.models import Weapon
@@ -15,6 +15,9 @@ class AdventureStarter:
     data: dict
 
     def validate_primary_key(self, clazz, keys):
+        keys = list(filter(lambda x: x is not None, keys))
+        if not keys:
+            return
         qs = clazz.objects.filter(id__in=keys)
         if len(qs) != len(keys):
             raise ValidationError('Invalid data')

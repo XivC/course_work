@@ -57,6 +57,7 @@ class BattleSerializer(serializers.ModelSerializer):
     planet = ProtectedPlanetSerializer(read_only=True)
     members = serializers.ListSerializer(child=BattleMemberSerializer(), read_only=True)
     applied_effects = serializers.ListSerializer(child=BattlerEffectSerializer(), read_only=True)
+    report = BattleReportSerializer(read_only=True)
 
     class Meta:
         model = Battle
@@ -65,4 +66,5 @@ class BattleSerializer(serializers.ModelSerializer):
             'planet',
             'members',
             'created_at',
+            'report',
         ]
