@@ -42,6 +42,7 @@ class AdventureSerializer(serializers.ModelSerializer):
         model = Adventure
         fields = [
             'id',
+            'name',
             'created_at',
             'started_at',
             'finished_at',
