@@ -55,4 +55,7 @@ class AdventureStepper:
                 self.adventure.id,
             ]
         )()[0]
-        return Battle.objects.get(id=battle_id)
+        try:
+            return Battle.objects.get(id=battle_id)
+        except Battle.DoesNotExist:
+            raise ValidationError('Adventure already finished')

@@ -18,6 +18,7 @@ rule_router.register('planets-rules', PlanetEffectRuleViewSet)
 rule_router.register('creatures-rules', CreatureEffectRuleViewSet)
 
 urlpatterns = [
+    path('', include(weapon_router.urls)),
     path('', include(effect_router.urls)),
     path('', include(rule_router.urls)),
 ]

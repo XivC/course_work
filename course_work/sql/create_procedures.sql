@@ -325,9 +325,11 @@ BEGIN
     INTO _allies_power, _opponents_power
     FROM battles_battlereport
     WHERE battle_id = _battle_id;
-    SELECT COUNT(*) INTO _count_unvisited FROM adventures_adventureplanet WHERE is_visited = False;
+    SELECT COUNT(*) INTO _count_unvisited FROM adventures_adventureplanet WHERE is_visited = False and adventure_id=adv_id;
 
     IF (_allies_power < _opponents_power) THEN
+        UPDATE adventures_adventure SET finished_at=current_timestamp, is_successful=False WHERE id = adv_id;
+        RETURN _battle_id;
     END IF;
 
     IF (_count_unvisited = 0) THEN
