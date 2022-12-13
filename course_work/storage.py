@@ -24,11 +24,10 @@ class FunctionCaller:
 
         stringifies = []
         for arg in args:
-            str_arg = ''
 
             if arg is None:
-                str_arg = 'null'
-            if type(arg) == int:
+                str_arg = 'null::INTEGER'
+            elif type(arg) == int:
                 str_arg = self.arg_to_int(arg)
             elif type(arg) == str:
                 str_arg = self.arg_to_str(arg)
