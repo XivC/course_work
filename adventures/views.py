@@ -15,7 +15,7 @@ from battles.serializers import BattleSerializer
 
 
 class AdventureViewSet(GenericViewSet, RetrieveModelMixin, ListModelMixin):
-    queryset = Adventure.objects.all()
+    queryset = Adventure.objects.all().order_by('-created_at')
     serializer_class = AdventureSerializer
 
     @property

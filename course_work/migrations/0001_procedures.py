@@ -4,10 +4,11 @@ from django.db.migrations import RunPython
 
 
 def do(_, __):
-    with open('./course_work/sql/create_procedures.sql') as f:
-        script = f.read()
-        with connection.cursor() as cursor:
-            cursor.execute(script)
+    for script_path in ['./course_work/sql/create_procedures.sql', './course_work/sql/fill_data.sql']:
+        with open(script_path) as f:
+            script = f.read()
+            with connection.cursor() as cursor:
+                cursor.execute(script)
 
 
 def undo(_, __):
