@@ -1,15 +1,15 @@
 import abc
 from abc import abstractmethod
-from typing import Callable
+from typing import Callable, Any
 
 
-class ServiceBase(metaclass=abc.ABC):
+class ServiceBase(abc.ABC):
 
-    def __call__(self):
+    def __call__(self) -> Any:
         for validator in self.get_validators():
             validator()
 
-        self.action()
+        return self.action()
 
     @abstractmethod
     def action(self):
