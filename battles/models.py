@@ -18,7 +18,7 @@ class Battler(models.Model):
 class Battle(models.Model):
     adventure = models.ForeignKey('adventures.Adventure', related_name='battles', on_delete=models.CASCADE)
     planet = models.ForeignKey('planets.Planet', related_name='+', on_delete=models.CASCADE)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class BattleMember(models.Model):

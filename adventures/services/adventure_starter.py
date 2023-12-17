@@ -9,6 +9,7 @@ from rest_framework.exceptions import ValidationError
 from adventures.models import Adventure, Team, AdventurePlanet, Teammate
 from affects.models import Weapon
 from battles.models import Battler
+from battles.services import BattlersBulkCreator
 from course_work.services import ServiceBase
 from course_work.storage import FunctionCaller
 from creatures.models import Creature
@@ -64,18 +65,11 @@ class AdventureStarter(ServiceBase):
         )
 
     def create_battlers(self, adventure: Adventure) -> list[Battler]:
-        battlers = []
-        for creature_id, weapon_id in zip(self.creatures_ids, self.weapons_ids):
-            battlers.append(
-                Battler(
-                    creature_id=creature_id,
-                    weapon_id=weapon_id,
-                    adventure=adventure,
-                )
-            )
-
-        Battler.objects.bulk_create(battlers)
-        return battlers
+        return BattlersBulkCreator(
+            adventure=adventure,
+            creatures=list(self.creatures),
+            weapons=list(self.weapons),
+        )()
 
     def create_teammates(self, team: Team, battlers: list[Battler]) -> None:
         mates = []
