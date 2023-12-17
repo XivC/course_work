@@ -1,12 +1,12 @@
 from django.db import models
 
-
 class Adventure(models.Model):
     name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     started_at = models.DateTimeField(null=True)
     finished_at = models.DateTimeField(null=True)
     is_successful = models.BooleanField(null=True)
+    author = models.ForeignKey('auth.User', null=True, on_delete=models.PROTECT)
 
 
 class AdventurePlanet(models.Model):

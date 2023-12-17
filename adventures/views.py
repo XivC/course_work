@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import ListModelMixin
 from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -17,10 +18,15 @@ from battles.serializers import BattleSerializer
 class AdventureViewSet(GenericViewSet, RetrieveModelMixin, ListModelMixin):
     queryset = Adventure.objects.all().order_by('-created_at')
     serializer_class = AdventureSerializer
+    permission_classes = [IsAuthenticated]
 
     @property
     def adventure(self):
-        return get_object_or_404(Adventure.objects.all(), pk=self.kwargs.get('pk'))
+        return get_object_or_404(Adventure.objects.filter(user=self.user), pk=self.kwargs.get('pk'))
+
+    @property
+    def user(self):
+        return self.request.user
 
     @action(methods=['post'], detail=False, url_path='start')
     @swagger_auto_schema(request_body=EditAdventureSerializer, responses={

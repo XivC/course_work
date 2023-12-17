@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'battles',
     'creatures',
     'planets',
+    'users',
     'drf_yasg',
     'drf_spectacular',
 ]

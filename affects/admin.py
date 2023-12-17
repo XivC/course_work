@@ -47,5 +47,5 @@ class PlanetEffectRuleAdmin(ModelAdmin):
 
 admin.site.register(Weapon, WeaponAdmin)
 admin.site.register(Effect, EffectAdmin)
-admin.site.register(CreatureEffectRule, CreatureEffectRule)
+admin.site.register(CreatureEffectRule, CreatureEffectRuleAdmin)
 admin.site.register(PlanetEffectRule, PlanetEffectRuleAdmin)
