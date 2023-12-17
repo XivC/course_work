@@ -11,6 +11,9 @@ class Effect(models.Model):
     name = models.CharField(max_length=255)
     power_affect = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.name} ({self.power_affect})'
+
 
 class CreatureEffectRule(models.Model):
     creature_from = models.ForeignKey('creatures.Creature', related_name='+', on_delete=models.CASCADE)
